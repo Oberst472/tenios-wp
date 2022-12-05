@@ -7,6 +7,7 @@ window.addEventListener('load', () => {
             this.bar = null
             this.duration = null
             this.currentTime = null
+            this.interval = null
         }
 
         getSecToFormat = (val) => {
@@ -17,20 +18,29 @@ window.addEventListener('load', () => {
         }
 
         changeCurrentDuration = () => {
-            setInterval(() => {
+            this.interval = setInterval(() => {
+                console.log(1)
                 this.currentTime.innerHTML = this.getSecToFormat(this.audio.currentTime)
             }, 1000)
         }
 
         play = () => {
-            this.audio.dataset.currentState = 'play'
-            this.audio.play()
-            this.changeCurrentDuration()
+            clearInterval(this.interval)
+
+            setTimeout(() => {
+                this.audio.dataset.currentState = 'play'
+                this.audio.play()
+                this.changeCurrentDuration()
+            }, 0)
         }
 
         pause = () => {
-            this.audio.dataset.currentState = 'pause'
-            this.audio.pause()
+            clearInterval(this.interval)
+
+            setTimeout(() => {
+                this.audio.dataset.currentState = 'pause'
+                this.audio.pause()
+            }, 0)
         }
 
         changeState = () => {
