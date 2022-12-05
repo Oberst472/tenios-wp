@@ -73,8 +73,10 @@ window.addEventListener('load', () => {
 
             this.durarion.innerHTML = this.getSecToFormat(this.audio.duration)
 
-            this.btn.addEventListener('click', this.changeState)
-            this.audio.addEventListener('timeupdate', this.updateProgress)
+            if (this.btn && this.audio) {
+                this.btn.addEventListener('click', this.changeState)
+                this.audio.addEventListener('timeupdate', this.updateProgress)
+            }
         }
     }
 
